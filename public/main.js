@@ -6,6 +6,8 @@ let loginPage = document.querySelector('#loginPage')
 let chatPage = document.querySelector('#chatPage')
 let loginInput = document.querySelector('#loginNameInput')
 let textInput = document.querySelector('#chatTextInput')
+let joinChatButton = document.querySelector('#joinChatButton');
+let sendButton = document.querySelector('#sendButton');
 
 loginPage.style.display = 'flex'
 chatPage.style.display = 'none'
@@ -59,6 +61,15 @@ textInput.addEventListener('keyup', (e) => {
     }
 })
 
+joinChatButton.addEventListener('click', () => {
+    let name = loginInput.value.trim();
+    if (name !== '') {
+        username = name;
+        document.title = 'Chat (' + username + ')';
+        socket.emit('join-request', username);
+    }
+});
+
 socket.on('user-ok',(list) => {
     loginPage.style.display = 'none'
     chatPage.style.display = 'flex'
@@ -69,6 +80,15 @@ socket.on('user-ok',(list) => {
     userList = list
     renderUserList()
 })
+
+sendButton.addEventListener('click', () => {
+    let txt = textInput.value.trim();
+    textInput.value = '';
+
+    if (txt !== '') {
+        socket.emit('send-msg', txt);
+    }
+});
 
 socket.on('list-update', (data) => {
     if(data.joined) {

@@ -93,3 +93,58 @@ ul, li {
     outline: 0;
     border: 0;
 }
+
+#joinChatButton,
+#sendButton {
+    border: none;
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#joinChatButton:hover,
+#sendButton:hover {
+    background-color: #45a049;
+}
+
+@media screen and (max-width: 600px) {
+    .page {
+        padding: 10px;
+    }
+
+    .userList {
+        display: none;
+    }
+
+    .chatList {
+        max-height: calc(100vh - 90px);
+    }
+}
+
+@media screen and (min-width: 601px) and (max-width: 900px) {
+    .userList {
+        width: 150px;
+    }
+
+    .chatList {
+        max-height: calc(100vh - 90px);
+    }
+}
+
+@media screen and (min-width: 901px) {
+    .userList {
+        width: 200px;
+    }
+
+    .chatList {
+        max-height: calc(100vh - 40px);
+    }
+}
+
